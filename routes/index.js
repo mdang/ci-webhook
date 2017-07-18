@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
 
 router.get('/ci-hook', function(req, res) {
   requests.push(req);
-  req.send('done');
+  res.send('done');
 
   // var newPayload = new Payload({
   //     body: req.body
