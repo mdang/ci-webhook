@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var requests = [];
+
 var Payload = require('../models/payload')
 
 /* GET home page. */
@@ -9,16 +11,23 @@ router.get('/', function(req, res) {
 });
 
 router.get('/ci-hook', function(req, res) {
-  var newPayload = new Payload({
-      body: req.body
-  });
+  requests.push(req);
+  req.send('done');
 
-  // Save the user
-  newPayload.save(function(err, payload) {
-      if (err) console.log(err);
+  // var newPayload = new Payload({
+  //     body: req.body
+  // });
+  //
+  // // Save the user
+  // newPayload.save(function(err, payload) {
+  //     if (err) console.log(err);
+  //
+  //     res.json(req.body);
+  // });
+});
 
-      res.json(req.body);
-  });
+router.get('/requests', function(req, res) {
+  res.json(requests);
 });
 
 module.exports = router;
