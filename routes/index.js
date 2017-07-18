@@ -7,7 +7,10 @@ router.get('/', function(req, res) {
 });
 
 router.get('/ci-hook', function(req, res) {
-  res.json(req);
+  res.json({
+    query: req.query,
+    body: req.body
+  });
 });
 
 module.exports = router;
