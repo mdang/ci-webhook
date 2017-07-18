@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/ci-hook', function(req, res) {
-  requests.push(req);
+  requests.push(req.body);
   res.send('done');
 
   // var newPayload = new Payload({
