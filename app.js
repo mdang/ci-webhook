@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -9,6 +11,9 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+var mongoose = require('mongoose');
+mongoose.connect(process.env.DB_CONN);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
